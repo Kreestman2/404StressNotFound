@@ -35,9 +35,9 @@ div {
     height: 200px;
     width: 400px;
     position: fixed;
-    top: 40%;
+    top: 30%;
     left: 50%;
-    margin-top: -100px;
+    margin-top: -150px;
     margin-left: -200px;
 }
 footer {
@@ -80,7 +80,7 @@ input[type=submit]:hover {
 container {
     border-radius: 5px;
     background-color: #f2f2f2;
-    padding: 20px;
+    padding: 5px;
 	font-family: verdana;
 	color: white;
     font-size: 18px;
@@ -89,6 +89,7 @@ label {
 	font-family: verdana;
 	color: white;
     font-size: 18px;
+	float: left;
 }
 
 </style>
@@ -99,35 +100,41 @@ label {
 	<ul>
 		<li><a href="./index.html">HOME</a></li>
 		<li><a href="./aboutUs.html">ABOUT US</a></li>
-  <!-- <li><a href="#login">LOGIN/REGISTER</a></li> -->
-    <li><a href="./loginRegister.html">LOGIN/REGISTER</a></li>
+		<li><a href="./loginRegister.html">LOGIN/REGISTER</a></li>
 		<li><a href="./contactForm.html">CONTACT</a></li>
 	</ul>
 
 <div class="container">
   <!-- <form action="/action_page.php"> -->
-
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" placeholder="Your name..">
-
+	<h1>Login</h1>
     <label for="email">Email</label>
     <input type="text" id="email" name="email" placeholder="Your email..">
 
-   <label for="subject">Subject</label>
-    <input type="text" id="subject" name="subject" placeholder="Write something.."></input>
+	<label for="password">Password</label>
+    <input type="text" id="password" name="password" placeholder="Your password..">
+	<input type="submit" value="Send">
+	
+	<h1>Not Registered? Register below:</h1>
+   <label for="newUser">Choose Username</label>
+    <input type="text" id="newUser" name="newUser" placeholder="Choose your username.."></input>
 
-    <label for="Message">Message</label>
-    <textarea id="Message" name="Message" placeholder="Say Hi!" style="height:50px"></textarea>
+	<label for="newPassword">Create Password</label>
+    <input type="text" id="newPassword" name="newPassword" placeholder="Create password..">
+	
+	<label for="confirmPassword">Confirm Password</label>
+    <input type="text" id="confirmPassword" name="confirmPassword" placeholder="Confirm password..">
+	
+	<label for="newEmail">Email</label>
+    <input type="text" id="newEmail" name="newEmail" placeholder="Your email..">
 
     <input type="submit" value="Send">
 
-  </form>
+  <!-- </form> -->
 </div>
-
+</body>
 <footer>
   <p>Team 404 Stress Not Found</p>
   <p>CSCI-8700 Fall 2017</p>
 </footer>
 
-</body>
 </html>
