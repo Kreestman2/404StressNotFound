@@ -14,5 +14,10 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "~1.7.8"
+  },
+  "dependencies": {
+    "electron-oauth2": "^3.0.0",
+    "mysql": "^2.15.0",
+    "node-mysql": "^0.4.2"
   }
 }

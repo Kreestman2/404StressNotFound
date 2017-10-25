@@ -1,0 +1,192 @@
+<html>
+<head>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: verdana;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+    opacity: 0.7;
+}
+h1 {
+    text-align: center;
+    font-family: verdana;
+    color: white;
+    font-size: 24px;
+}
+h2 {
+    text-align: center;
+    font-family: verdana;
+    color: white;
+    font-size: 18px;
+}
+h3 {
+    text-align: center;
+    font-family: verdana;
+    color: white;
+    font-size: 12px;
+}
+
+div {
+    height: 200px;
+    width: 400px;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -200px;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-family: verdana;
+    font-size: 10px;
+}
+input[type=text], select, textarea {
+    width: 100%; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    box-sizing: border-box; 
+    margin-top: 6px; 
+    margin-bottom: 16px; 
+    resize: vertical s;
+	
+}
+
+
+input[type=submit] {
+    background-color: blue;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+input[type=submit]:hover {
+    background-color: black;
+}
+button {
+    background-color: blue;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 5px;
+	font-family: verdana;
+	color: white;
+    font-size: 18px;
+}
+
+label {
+	font-family: verdana;
+	color: white;
+    font-size: 12px;
+	float: left;
+}
+ 
+</style>
+
+
+
+</head>	
+
+	<body background="./Images/Background.png">
+	<ul>
+		<li><a href="./index.html">HOME</a></li>
+		<li><a href="./aboutUs.html">ABOUT US</a></li>
+		<li><a href="./mymusic.html">MY MUSIC</a></li>
+		<li><a href="./contactForm.html">CONTACT</a></li>
+	</ul>
+<div class="container">
+
+<h1 id="UserName"> </h1>
+
+
+ 
+      <label  for ="sel-options" >What are you doing now?</label>
+    <select id="sel-options"  class="form-control">
+         <option value="Preparing for my exam">Preparing for my exam</option>    
+         <option value="doing my homework">doing my homework</option>
+		 <option value="studying">studying</option>		 
+		 
+		 <option value="driving">driving</option> 
+		 <option value="working out">working out</option> 
+		 <option value="devekoping">developing</option> 
+		 <option value="working">working</option> 
+      </select>
+   
+ <label  for ="sel-options2" >How do you feel about it?</label>
+    <select id="sel-options2"  class="form-control">
+         <option value="Lazy">Lazy</option>    
+         <option value="Sleepy">Sleepy</option>
+		 <option value="Stressed">Stressed</option>		 	 
+		 <option value="Unfocused">Unfocused</option> 
+		 <option value="Uncreative">Uncreative</option> 
+		 
+      </select>
+   
+<label  for ="sel-options3" >WHow do you want to feel about it?</label>
+    <select id="sel-options3"  class="form-control">
+         <option value="Active">Active</option>    
+         <option value="Energetic">Energetic</option>
+		 <option value="Calm">Calm</option>		 		 
+		 <option value="Focused">Focused</option> 
+		 <option value="Creative">Creative</option> 
+		  
+      </select>
+<label  for ="sel-options4" >Choose default playtime?</label>
+    <select id="sel-options4"  class="form-control">
+         <option value="10 minutes">10 minutes</option>    
+         <option value="20 minutes">20 minutes</option>
+		 <option value="30 minutes">30 minutes</option>		 		 
+		 <option value="40 minutes">40 minutes</option> 
+		 <option value="50 minutes">50 minutes</option> 
+		 <option value="60 minutes">60 minutes</option> 
+		 
+		  
+    </select>
+ 	 
+<input type="submit" name="submit" value="Let's Get the Music Started"/>
+
+</div>
+</body>
+<script>
+var username = localStorage.getItem("userName");
+document.getElementById("UserName").innerHTML = username.toString();
+</script>
+<footer>
+  <p>Team 404 Stress Not Found</p>
+  <p>CSCI-8700 Fall 2017</p>
+  
+</footer>
+
+</html>
