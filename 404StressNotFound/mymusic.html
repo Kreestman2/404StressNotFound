@@ -50,7 +50,7 @@ div {
     position: fixed;
     top: 30%;
     left: 50%;
-    margin-top: -150px;
+    margin-top: -50px;
     margin-left: -200px;
 }
 footer {
@@ -125,13 +125,12 @@ label {
 		<li><a href="./aboutUs.html">ABOUT US</a></li>
 		<li><a href="./mymusic.html">MY MUSIC</a></li>
 		<li><a href="./contactForm.html">CONTACT</a></li>
+		<li><a href="./index.html">LOG OUT</a></li>
 	</ul>
 <div class="container">
 
-<h1 id="UserName"> </h1>
+<h1 id="currentUser"></h1>
 
-
- 
       <label  for ="sel-options" >What are you doing now?</label>
     <select id="sel-options"  class="form-control">
          <option value="Preparing for my exam">Preparing for my exam</option>    
@@ -175,13 +174,22 @@ label {
 		  
     </select>
  	 
-<input type="submit" name="submit" value="Let's Get the Music Started"/>
+<input type="submit" name="submit" id="submit" value="Let's Get the Music Started"/>
 
 </div>
 </body>
 <script>
-var username = localStorage.getItem("userName");
-document.getElementById("UserName").innerHTML = username.toString();
+console.log(require('electron').remote.getGlobal('user').userName);
+document.getElementById('currentUser').innerHTML = 'Hello ' + require('electron').remote.getGlobal('user').userName + '!';
+        function el(selector) {
+            return document.getElementById(selector);
+        }
+
+        el('submit').addEventListener('click', function(){
+			window.location.href = "./player.html";
+		},false);
+//var username = localStorage.getItem("userName");
+//document.getElementById("UserName").innerHTML = username.toString();
 </script>
 <footer>
   <p>Team 404 Stress Not Found</p>

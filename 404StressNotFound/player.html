@@ -1,0 +1,110 @@
+<html>
+<head>
+    <title>Moodify Audio Player</title>
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+	ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: verdana;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+    opacity: 0.7;
+}
+h1 {
+    text-align: center;
+    font-family: verdana;
+    color: white;
+    font-size: 24px;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-family: verdana;
+    font-size: 10px;
+}
+	</style>
+</head>
+<body background="./Images/Background.png">
+<ul>
+  <li><a href="./index.html">HOME</a></li>
+  <li><a href="./aboutUs.html">ABOUT US</a></li>
+  <li><a href="./mymusic.html">LOGIN/REGISTER</a></li>
+  <li><a href="./contactForm.html">CONTACT</a></li>
+  <li><a href="./index.html" id="logout">LOG OUT</a></li>
+</ul>
+<h1> Music For Your Mood </h1>
+	<div id="container">
+		<div id="audio-image">
+			<img class="cover">
+		</div>
+		<div id="audio-player">
+			<div id="audio-info">
+				<span class="artist"></span> - <span class="title"></span>
+			</div>
+			<input id="volume" type="range" min="0" max="10" value="4">
+			<br>
+			<div id="buttons">
+				<span>
+					<button id="prev"></button>
+					<button id="play"></button>
+					<button id="pause"></button>
+					<button id="stop"></button>
+					<button id="next"></button>
+				</span>
+			</div>
+			<div class="clearfix"></div>
+			<div id="tracker">
+				<div id="progress-bar">
+					<span id="progress"></span>
+				</div>
+				<span id="duration"></span>
+			</div>
+			<div class="clearfix"></div>
+			<ul id="playlist" class="hidden">
+				<li class="active" song="Ed Sheeran - Perfect.mp3" cover="cover1.jpg" artist="Ed Sheeran">Ed Sheeran - Perfect</li>
+				<li song="Ed Sheeran - Shape Of You.mp3" cover="cover1.jpg" artist="Ed Sheeran">Ed Sheeran - Shape Of You</li>
+				<li song="Pitbull - Give Me Everything.mp3" cover="cover1.jpg" artist="Pitbull">Pitbull - Give Me Everything</li>
+
+			</ul>
+		</div>
+	</div>
+	<footer>
+  <p>Team 404 Stress Not Found</p>
+  <p>CSCI-8700 Fall 2017</p>
+</footer>
+	<script>window.$ = window.jQuery = require('jquery');</script>
+	<script src="js/main.js"></script>
+	<script>
+        function el(selector) {
+            return document.getElementById(selector);
+        }
+
+        el('logout').addEventListener('click', function(){
+			equire('electron').remote.getGlobal('user').userName = '';
+		},false);
+//var username = localStorage.getItem("userName");
+//document.getElementById("UserName").innerHTML = username.toString();
+</script>
+</body>
+</html>

@@ -127,7 +127,6 @@ label {
 }
 
 </style>
-<script src="validate.js"></script>
 </head>	
 
 
@@ -279,7 +278,7 @@ label {
 </select></td>
 </tr>
 </table>
-<input type="button" value="register" id="register" onclick="validate()"></button>
+<input type="button" value="register" id="register" <!--onclick="validate()"-->></button>
     
 
   <!-- </form> -->
@@ -287,6 +286,7 @@ label {
 </body>
 <script>
 	var mysql = require('mysql');
+	var attempt = 3;
 
         function el(selector) {
             return document.getElementById(selector);
@@ -299,17 +299,22 @@ label {
             getLogin(function(rows){
                 if (rows.length > 0) {
 					if (rows) {
-						if (typeof(Storage) !== "undefined"){
-					    localStorage.setItem("userName",rows.Username);
-						console.log(typeOf(Storage));
-						//window.location.href = "./mymusic.html";
-						}
-						else
-						console.log("RIP");
+						require('electron').remote.getGlobal('user').userName = rows[0].Username;
+						console.log('User: ' + rows[0].Username);
+						window.location.href = "./mymusic.html";
 					}
 				}
-				else
+				else{
 					console.log("No one found!");
+					attempt --;// Decrementing by one.
+					alert("Not a valid email/password. You have "+attempt+" attempt(s) left");
+				}
+				if( attempt == 0){
+					document.getElementById("email").disabled = true;
+					document.getElementById("password").disabled = true;
+					document.getElementById("login").disabled = true;
+					return false;
+				}		
             });
         },false);
 		
@@ -318,9 +323,10 @@ label {
 			console.log('Working!');
 			//window.location.href = "./mymusic.html";
             getRegister(function(rows){
-			    localStorage.setItem("userName",rows.Username);
-                window.location.href = "./mymusic.html";
-            });
+					require('electron').remote.getGlobal('user').userName = newUser.value;
+					console.log('User: ' + newUser.value);
+					window.location.href = "./mymusic.html";
+			});
         },false);
 
         function getLogin(callback){
@@ -355,9 +361,9 @@ label {
                     console.log(err);
                     return;
                 }
-
-                callback(rows);
-
+				else{
+					callback(rows);
+				}
                 console.log("Query succesfully executed");
             });
 
@@ -394,18 +400,35 @@ label {
 			//$query = "SELECT Username,Email,Password FROM users WHERE Password='Test'";
 			console.log('Email: ' + email.value);
 			console.log('Password: ' + password.value);
-			var values = [[newUser.value, newEmail.value,newPassword.value]];
-            connection.query("INSERT INTO users (Username, Email, Password) VALUES ?", [values], function(err, rows, fields) {
-                if(err){
-                    console.log("An error ocurred performing the query.");
-                    console.log(err);
-                    return;
-                }
+			 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			if(re.test(newEmail.value)){
+				var values = [[newUser.value, newEmail.value,newPassword.value]];
+				connection.query("INSERT INTO users (Username, Email, Password) VALUES ?", [values], function(err, rows, fields) {
+					if(err){
+						console.log("An error ocurred performing the query.");
+						console.log(err);
+						return;
+					}
 
-                callback(rows);
+					callback(rows);
 
-                console.log("Query succesfully executed");
-            });
+					console.log("Query succesfully executed");
+				});
+			}
+			else{
+				console.log("No one found!");
+				attempt --;// Decrementing by one.
+				alert("Not a valid registration. You have "+attempt+" attempt(s) left");
+			}
+			if( attempt == 0){
+				document.getElementById("newUser").disabled = true;
+				document.getElementById("newEmail").disabled = true;
+				document.getElementById("newPassword").disabled = true;
+				document.getElementById("register").disabled = true;
+				return false;
+			}
+			else
+				return;
 
             // Close the connection
             connection.end(function(){

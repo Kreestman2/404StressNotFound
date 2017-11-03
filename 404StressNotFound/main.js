@@ -3,6 +3,7 @@ const electron = require('electron')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
+var ipcMain = require('electron').ipcMain;
 
 const path = require('path')
 const url = require('url')
@@ -10,6 +11,14 @@ const url = require('url')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+
+global.user = {
+	userName: ''
+}
+
+ipcMain.on('show-userName', function(event) {
+  console.log('Hello' + global.user.userName);
+});
 
 function createWindow () {
   // Create the browser window.
