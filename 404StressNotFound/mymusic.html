@@ -153,8 +153,8 @@ label {
 		 
       </select>
    
-<label  for ="sel-options3" >WHow do you want to feel about it?</label>
-    <select id="sel-options3"  class="form-control">
+<label  for ="selMood" >How do you want to feel about it?</label>
+    <select id="selMood"  class="form-control">
          <option value="Active">Active</option>    
          <option value="Energetic">Energetic</option>
 		 <option value="Calm">Calm</option>		 		 
@@ -162,8 +162,8 @@ label {
 		 <option value="Creative">Creative</option> 
 		  
       </select>
-<label  for ="sel-options4" >Choose default playtime?</label>
-    <select id="sel-options4"  class="form-control">
+<label  for ="selTime" >Choose default playtime?</label>
+    <select id="selTime"  class="form-control">
          <option value="10 minutes">10 minutes</option>    
          <option value="20 minutes">20 minutes</option>
 		 <option value="30 minutes">30 minutes</option>		 		 
@@ -178,6 +178,7 @@ label {
 
 </div>
 </body>
+<script src="js/playlistToUL.js"></script>
 <script>
 console.log(require('electron').remote.getGlobal('user').userName);
 document.getElementById('currentUser').innerHTML = 'Hello ' + require('electron').remote.getGlobal('user').userName + '!';
@@ -186,8 +187,72 @@ document.getElementById('currentUser').innerHTML = 'Hello ' + require('electron'
         }
 
         el('submit').addEventListener('click', function(){
-			window.location.href = "./player.html";
-		},false);
+			getPlaylist(function(rows){
+                if (rows.length > 0) {
+					//require('electron').remote.getGlobal('userPlaylist').Playlist = new Playlist(selTime.value);
+					var newPlaylist = new Playlist(selTime.value);
+					for (row in rows) {
+						console.log('Song: ' + rows[row].Name);
+						//var song = new Song(rows[row].Name, rows[row].Musician);
+						//console.log("Song: " + song.name);
+						newPlaylist.playlist.push(new Song(rows[row].Name, rows[row].Musician));
+						require('electron').remote.getGlobal('userPlaylist').Playlist = newPlaylist;
+					}
+					for (row in rows)
+					{
+						console.log("Check: " + require('electron').remote.getGlobal('userPlaylist').Playlist.playlist[row].name);
+					}
+					window.location.href = "./player.html";
+				}
+				else{
+					console.log("No music was found!");
+				}
+			},false);
+		});
+		
+		function getPlaylist(callback){
+            var mysql = require('mysql');
+
+            // Add the credentials to access your database
+            var connection = mysql.createConnection({
+                host     : 'localhost',
+                user     : 'root',
+                password : null,
+                database : 'moodify'
+            });
+
+            // connect to mysql
+            connection.connect(function(err) {
+                // in case of error
+                if(err){
+                    console.log(err.code);
+                    console.log(err.fatal);
+                }
+            });
+
+            // Perform a query
+			//$query = 'SELECT * from `users`';
+            //$query = 'SELECT `Username`,`Email`,`Password` FROM `users` where `users`.`Password`=Test';
+			//$query = "SELECT Username,Email,Password FROM users WHERE Password='Test'";
+			console.log('Mood: ' + selMood.value);
+			console.log('Time: ' + selTime.value);
+            connection.query("SELECT * FROM songs WHERE Mood1=? OR Mood2=? OR Mood3=?", [selMood.value, selMood.value, selMood.value], function(err, rows, fields) {
+                if(err){
+                    console.log("An error ocurred performing the query.");
+                    console.log(err);
+                    return;
+                }
+				else{
+					callback(rows);
+				}
+                console.log("Query succesfully executed");
+            });
+
+            // Close the connection
+            connection.end(function(){
+                // The connection has been closed
+            });
+        }
 //var username = localStorage.getItem("userName");
 //document.getElementById("UserName").innerHTML = username.toString();
 </script>

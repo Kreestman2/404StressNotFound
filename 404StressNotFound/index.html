@@ -56,11 +56,28 @@ footer {
 
 <body background="./Images/Background.png">
 <ul>
-  <li><a href="#home">HOME</a></li>
+  <li><a href="./index.html">HOME</a></li>
   <li><a href="./aboutUs.html">ABOUT US</a></li>
-  <!-- <li><a href="#login">LOGIN/REGISTER</a></li> -->
-    <li><a href="./loginRegister.html">LOGIN/REGISTER</a></li>
+    <li><a id="loggedIn" href="./mymusic.html" text="MY MUSIC">MY MUSIC</a></li>
   <li><a href="./contactForm.html">CONTACT</a></li>
+  <li><a id="logout" href="./index.html">LOG OUT</a></li>
+  <script>
+	if (require('electron').remote.getGlobal('user').userName == '')
+	{
+		document.getElementById("logout").style.visibility="hidden";
+		document.getElementById("logout").disabled=true;
+		document.getElementById("loggedIn").text="LOGIN/REGISTER";
+		document.getElementById("loggedIn").href="./loginRegister.html";
+	}
+	
+	function el(selector) {
+        return document.getElementById(selector);
+    }
+
+    el('logout').addEventListener('click', function(){
+		require('electron').remote.getGlobal('user').userName = '';
+	},false);
+  </script>
 </ul>
 
 <div>

@@ -49,7 +49,7 @@ footer {
 <ul>
   <li><a href="./index.html">HOME</a></li>
   <li><a href="./aboutUs.html">ABOUT US</a></li>
-  <li><a href="./mymusic.html">LOGIN/REGISTER</a></li>
+  <li><a href="./mymusic.html">MY MUSIC</a></li>
   <li><a href="./contactForm.html">CONTACT</a></li>
   <li><a href="./index.html" id="logout">LOG OUT</a></li>
 </ul>
@@ -82,9 +82,9 @@ footer {
 			</div>
 			<div class="clearfix"></div>
 			<ul id="playlist" class="hidden">
-				<li class="active" song="Ed Sheeran - Perfect.mp3" cover="cover1.jpg" artist="Ed Sheeran">Ed Sheeran - Perfect</li>
+				<!--<li class="active" song="Ed Sheeran - Perfect.mp3" cover="cover1.jpg" artist="Ed Sheeran">Ed Sheeran - Perfect</li>
 				<li song="Ed Sheeran - Shape Of You.mp3" cover="cover1.jpg" artist="Ed Sheeran">Ed Sheeran - Shape Of You</li>
-				<li song="Pitbull - Give Me Everything.mp3" cover="cover1.jpg" artist="Pitbull">Pitbull - Give Me Everything</li>
+				<li song="Pitbull - Give Me Everything.mp3" cover="cover1.jpg" artist="Pitbull">Pitbull - Give Me Everything</li>-->
 
 			</ul>
 		</div>
@@ -94,7 +94,7 @@ footer {
   <p>CSCI-8700 Fall 2017</p>
 </footer>
 	<script>window.$ = window.jQuery = require('jquery');</script>
-	<script src="js/main.js"></script>
+	<script src="js/playlistToUL.js"></script>
 	<script>
         function el(selector) {
             return document.getElementById(selector);
@@ -103,8 +103,12 @@ footer {
         el('logout').addEventListener('click', function(){
 			equire('electron').remote.getGlobal('user').userName = '';
 		},false);
+		
+		console.log("Check: " + require('electron').remote.getGlobal('userPlaylist').Playlist.playlist[0].name);
+		makeUL(require('electron').remote.getGlobal('userPlaylist').Playlist.playlist);
 //var username = localStorage.getItem("userName");
 //document.getElementById("UserName").innerHTML = username.toString();
 </script>
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -9,7 +9,7 @@ function initAudio(element){
 	var song = element.attr('song');
 	var title = element.text();
 	var cover = element.attr('cover');
-	var artist = element.attr('artist');
+	var artist = element.attr('musician');
 	
 	//Create audio object
 	audio = new Audio('Music/'+ song);

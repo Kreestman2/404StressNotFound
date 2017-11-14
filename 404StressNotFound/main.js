@@ -16,6 +16,10 @@ global.user = {
 	userName: ''
 }
 
+global.userPlaylist = {
+	Playlist: ''
+}
+
 ipcMain.on('show-userName', function(event) {
   console.log('Hello' + global.user.userName);
 });
