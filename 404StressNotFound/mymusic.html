@@ -125,7 +125,7 @@ label {
 		<li><a href="./aboutUs.html">ABOUT US</a></li>
 		<li><a href="./mymusic.html">MY MUSIC</a></li>
 		<li><a href="./contactForm.html">CONTACT</a></li>
-		<li><a href="./index.html">LOG OUT</a></li>
+		<li><a href="./index.html" id="logout">LOG OUT</a></li>
 	</ul>
 <div class="container">
 
@@ -156,10 +156,11 @@ label {
 <label  for ="selMood" >How do you want to feel about it?</label>
     <select id="selMood"  class="form-control">
          <option value="Active">Active</option>    
-         <option value="Energetic">Energetic</option>
-		 <option value="Calm">Calm</option>		 		 
+		 <option value="Cool">Calm</option>
+		 <option value="Tense">Dark</option>
+         <option value="Awake">Energetic</option>	 		 
 		 <option value="Focused">Focused</option> 
-		 <option value="Creative">Creative</option> 
+		 <option value="Relaxing">Relaxed</option>
 		  
       </select>
 <label  for ="selTime" >Choose default playtime?</label>
@@ -186,6 +187,7 @@ document.getElementById('currentUser').innerHTML = 'Hello ' + require('electron'
             return document.getElementById(selector);
         }
 
+		
         el('submit').addEventListener('click', function(){
 			getPlaylist(function(rows){
                 if (rows.length > 0) {
@@ -253,6 +255,10 @@ document.getElementById('currentUser').innerHTML = 'Hello ' + require('electron'
                 // The connection has been closed
             });
         }
+		
+		 el('logout').addEventListener('click', function(){
+			require('electron').remote.getGlobal('user').userName = '';
+		},false);
 //var username = localStorage.getItem("userName");
 //document.getElementById("UserName").innerHTML = username.toString();
 </script>

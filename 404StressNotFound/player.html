@@ -101,7 +101,7 @@ footer {
         }
 
         el('logout').addEventListener('click', function(){
-			equire('electron').remote.getGlobal('user').userName = '';
+			require('electron').remote.getGlobal('user').userName = '';
 		},false);
 		
 		console.log("Check: " + require('electron').remote.getGlobal('userPlaylist').Playlist.playlist[0].name);
@@ -109,6 +109,6 @@ footer {
 //var username = localStorage.getItem("userName");
 //document.getElementById("UserName").innerHTML = username.toString();
 </script>
-<script src="js/main.js"></script>
+<script src="js/player.js"></script>
 </body>
 </html>
