@@ -1,8 +1,17 @@
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title>Moodify Audio Player</title>
 	<link rel="stylesheet" href="css/style.css">
 	<style>
+	html { 
+  background: url(./Images/Background.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 	ul {
     list-style-type: none;
     margin: 0;
@@ -44,8 +53,13 @@ footer {
     font-size: 10px;
 }
 	</style>
+	
+	<script type="text/javascript">
+		window.$ = window.jQuery = require('jquery');
+		$( "#openModal" ).slideUp( 300 ).delay( 800 ).fadeIn( 400 );
+	</script>
 </head>
-<body background="./Images/Background.png">
+<!--<body background="./Images/Background.png">-->
 <ul>
   <li><a href="./index.html">HOME</a></li>
   <li><a href="./aboutUs.html">ABOUT US</a></li>
@@ -53,6 +67,20 @@ footer {
   <li><a href="./contactForm.html">CONTACT</a></li>
   <li><a href="./index.html" id="logout">LOG OUT</a></li>
 </ul>
+
+<div id="openModal" class="modal">
+	<div class="modal-content">
+    <div><a href="#close" title="Close" class="close">X</a>
+        <br><h2 align ="center" >How are you doing now?</h2> <br>
+		<div text-align="center"><form>
+			<input class="MyButton" id="keepGoing" type="button" value="Better, keep playing!" onclick="closeModal()" />
+			<input class="MyButton" id="change" type="button" value="I'd rather listen to something else!" onclick="changePage()" />
+		</form></div>
+    </div>
+	</div>
+</div>
+
+
 <h1> Music For Your Mood </h1>
 	<div id="container">
 		<div id="audio-image">
@@ -96,6 +124,7 @@ footer {
 	<script>window.$ = window.jQuery = require('jquery');</script>
 	<script src="js/playlistToUL.js"></script>
 	<script>
+		document.getElementById("openModal").hidden = true;
         function el(selector) {
             return document.getElementById(selector);
         }

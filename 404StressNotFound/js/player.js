@@ -141,3 +141,44 @@ function showDuration(){
 		};
 	});
 }
+
+
+// Get the modal
+var modal = document.getElementById('openModal');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal 
+timeout();
+function timeout(){
+	if (require('electron').remote.getGlobal('userPlaylist').Playlist.time > 0){
+		setTimeout(function(){
+			console.log("Should block now");
+			modal.style.display = "block";
+		}, (require('electron').remote.getGlobal('userPlaylist').Playlist.time * 60000)); //change to require('electron').remote.getGlobal('userPlaylist').Playlist.time
+	}
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function closeModal(){
+	console.log("Should close now");
+	modal.style.display = "none";
+	timeout();
+}
+
+function changePage(){
+	console.log("Should switch now");
+	window.location.href = "./mymusic.html";
+}

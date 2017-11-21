@@ -1,6 +1,14 @@
 <html>
 <head>
 <style>
+html { 
+  background: url(./Images/Background.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -119,7 +127,7 @@ label {
 
 </head>	
 
-	<body background="./Images/Background.png">
+	<!--<body background="./Images/Background.png">-->
 	<ul>
 		<li><a href="./index.html">HOME</a></li>
 		<li><a href="./aboutUs.html">ABOUT US</a></li>
@@ -165,12 +173,13 @@ label {
       </select>
 <label  for ="selTime" >Choose default playtime?</label>
     <select id="selTime"  class="form-control">
-         <option value="10 minutes">10 minutes</option>    
-         <option value="20 minutes">20 minutes</option>
-		 <option value="30 minutes">30 minutes</option>		 		 
-		 <option value="40 minutes">40 minutes</option> 
-		 <option value="50 minutes">50 minutes</option> 
-		 <option value="60 minutes">60 minutes</option> 
+         <option value="15">15 minutes</option>    
+         <option value="30">30 minutes</option>
+		 <option value="45">45 minutes</option>		 		 
+		 <option value="60">60 minutes</option> 
+		 <option value="75">75 minutes</option> 
+		 <option value="90">90 minutes</option>
+		 <option value="-1">No specified time</option> 		 
 		 
 		  
     </select>
