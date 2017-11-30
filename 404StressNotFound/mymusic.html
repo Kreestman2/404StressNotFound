@@ -179,7 +179,7 @@ label {
 		 <option value="60">60 minutes</option> 
 		 <option value="75">75 minutes</option> 
 		 <option value="90">90 minutes</option>
-		 <option value="-1">No specified time</option> 		 
+		 <option value=".3">No specified time</option> 		 
 		 
 		  
     </select>
@@ -207,8 +207,8 @@ document.getElementById('currentUser').innerHTML = 'Hello ' + require('electron'
 						//var song = new Song(rows[row].Name, rows[row].Musician);
 						//console.log("Song: " + song.name);
 						newPlaylist.playlist.push(new Song(rows[row].Name, rows[row].Musician));
-						require('electron').remote.getGlobal('userPlaylist').Playlist = newPlaylist;
 					}
+					require('electron').remote.getGlobal('userPlaylist').Playlist = newPlaylist;
 					for (row in rows)
 					{
 						console.log("Check: " + require('electron').remote.getGlobal('userPlaylist').Playlist.playlist[row].name);

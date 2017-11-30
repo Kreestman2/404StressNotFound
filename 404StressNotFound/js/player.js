@@ -8,6 +8,7 @@ var currSong = 0;
 //Hide Pause
 $('#pause').hide();
 require('electron').remote.getGlobal('userPlaylist').Playlist.playlist = randomizePlaylist(require('electron').remote.getGlobal('userPlaylist').Playlist.playlist);
+makeUL(require('electron').remote.getGlobal('userPlaylist').Playlist.playlist);
 initAudio($('#playlist li:first-child'));
 
 function initAudio(element){
@@ -27,6 +28,7 @@ function initAudio(element){
 	
 	$('#playlist li').removeClass('active');
 	element.addClass('active');
+	console.log("Now playing " + require('electron').remote.getGlobal('userPlaylist').Playlist.playlist[currSong].name + " at pos " + currSong);
 	audio.play();
 	$('#play').hide();
 	$('#pause').show();
@@ -60,15 +62,16 @@ $('#stop').click(function(){
 $('#next').click(function(){
 	audio.pause();
 	var next = $('#playlist li.active').next();
+	console.log(next.text() + next.attr('song'));
 	//ADD DISLIKE FUNCTIONALITY HER
 	require('electron').remote.getGlobal('userPlaylist').Playlist.playlist[currSong].disliked = true;
 	console.log("Disliking song " + require('electron').remote.getGlobal('userPlaylist').Playlist.playlist[currSong].name + " at pos " + currSong);
 	currSong++;
 	if(next.length == 0){
-		next = $('#playlist li:first-child');
 		//RESET PLAYLIST CODE GOES HERE
 		console.log("Resetting playlist");
 		resetPlaylist();
+		next = $('#playlist li:first-child');
 		currSong = 0;
 	}
 	initAudio(next);
@@ -121,6 +124,7 @@ function showDuration(){
 		
 		audio.onended = function() {
 			var next = $('#playlist li.active').next();
+			console.log(next.text() + next.attr('song'));
 			currSong++;
 			if(next.length == 0){
 				next = $('#playlist li:first-child');
@@ -134,7 +138,6 @@ function showDuration(){
 				console.log("Hitting next");
 				initAudio(next);
 			}
-			console.log("Now playing " + require('electron').remote.getGlobal('userPlaylist').Playlist.playlist[currSong].name + " at pos " + currSong);
 
 			audio.play();
 			showDuration();

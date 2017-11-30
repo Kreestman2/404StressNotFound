@@ -40,6 +40,7 @@ function resetPlaylist(){
 	{
 		console.log("I: " + i + ", length: " + array.length);
 		if(array[i].disliked == true) {
+			console.log("Removing: " + i + ", name: " + array[i].name);
 			array.splice(i, 1);
 		}
 		else{
